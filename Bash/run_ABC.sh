@@ -11,7 +11,6 @@ ml R
 
 Rscript -e "devtools::install_github('EvoLandEco/eve')"
 Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
-Rscript -e "devtools::install_github('thijsjanzen/treestats')"
 
 name=${1}
 nrep=${2}
