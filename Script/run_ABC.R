@@ -4,7 +4,7 @@ name <- args[1]
 set <- as.numeric(args[2])
 nrep <- as.numeric(args[3])
 
-prior_sample_1 <-  create_prior_sample(dist = "unif",
+prior_sample_1 <-  eveABC::create_prior_sample(dist = "unif",
                                        n = 50,
                                        la_min = 0.6,
                                        la_max = 1.2,
@@ -19,7 +19,7 @@ prior_sample_1 <-  create_prior_sample(dist = "unif",
                                        metric = "pd",
                                        offset = "simtime")
 
-prior_sample_2 <-  create_prior_sample(dist = "unif",
+prior_sample_2 <-  eveABC::create_prior_sample(dist = "unif",
                                        n = 50,
                                        la_min = 0.6,
                                        la_max = 1.2,
@@ -34,7 +34,7 @@ prior_sample_2 <-  create_prior_sample(dist = "unif",
                                        metric = "ed",
                                        offset = "none")
 
-prior_sample_3 <-  create_prior_sample(dist = "unif",
+prior_sample_3 <-  eveABC::create_prior_sample(dist = "unif",
                                        n = 50,
                                        la_min = 0.6,
                                        la_max = 1.2,
@@ -51,9 +51,9 @@ prior_sample_3 <-  create_prior_sample(dist = "unif",
 
 prior_sample <- rbind(prior_sample_1, prior_sample_2, prior_sample_3)
 
-prior_sample <- as.prior.sample(prior_sample)
+prior_sample <- eveABC::as.prior.sample(prior_sample)
 
-out <- edd_sim_sample_rep(prior_sample[[set]], rep = nrep, drop_extinct = FALSE)
+out <- eveABC::edd_sim_sample_rep(prior_sample[[set]], rep = nrep, drop_extinct = FALSE)
 
 eve:::check_folder(name)
 eve:::save_result(out, name, set)
