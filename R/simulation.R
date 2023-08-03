@@ -1,3 +1,4 @@
+#' @export do_edd_sim
 do_edd_sim <- function(sample, rep = 100, drop_extinct = FALSE) {
   if(!inherits(sample, "prior sample")) {
     stop("Prior sample must be created by the create_prior_sample() function")
@@ -9,6 +10,7 @@ do_edd_sim <- function(sample, rep = 100, drop_extinct = FALSE) {
 }
 
 
+#' @export edd_sim_sample_rep
 edd_sim_sample_rep <- function(sample, rep = 100, drop_extinct = FALSE) {
   result <- replicate(rep, edd_sim_sample(sample = sample, drop_extinct = drop_extinct))
 }

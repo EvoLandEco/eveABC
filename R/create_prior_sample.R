@@ -1,3 +1,4 @@
+#' @export create_prior_sample
 create_prior_sample <- function(dist, ...) {
   stopifnot(is.character(dist))
   pars <- list(...)
@@ -47,6 +48,7 @@ create_prior_sample <- function(dist, ...) {
 }
 
 
+#' @export as.prior.sample
 as.prior.sample <- function(x) {
   if(!inherits(x, "data.frame")) stop("Must be a data frame")
   
