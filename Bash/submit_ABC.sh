@@ -12,6 +12,6 @@ param_set=${2}
 nrep=${3}
 
 ml R
-Rscript ~/repos/eveABC/Bash/run_ABC.R ${name} \
+Rscript ~/repos/eveABC/Script/run_ABC.R ${name} \
                                    ${param_set} \
                                    ${nrep}
