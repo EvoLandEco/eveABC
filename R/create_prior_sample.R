@@ -21,7 +21,7 @@ create_prior_sample <- function(dist, ...) {
                     "metric",
                     "offset")
     pars_identical <- setequal(sort(names(pars)), sort(pars_names))
-    pars_legal <- all(lengths(my_list) == 1)
+    pars_legal <- all(lengths(pars) == 1)
     if (!pars_identical) stop(paste0("Insufficient parameters, requiring ", paste(pars_names, collapse = ", ")))
     if (!pars_legal) stop("Illegal parameter(s)")
     
