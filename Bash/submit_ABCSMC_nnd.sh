@@ -4,7 +4,7 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --job-name=edd_ABCSMC_nnd
 #SBATCH --output=logs/edd_ABCSMC_nnd-%j.log
-#SBATCH --mem=8GB
+#SBATCH --mem=32GB
 #SBATCH --partition=regular
 #SBATCH --mail-type=ALL
 
