@@ -1,3 +1,6 @@
+args <- commandArgs(TRUE)
+name <- args[1]
+
 stats_target <- c(balance = 0.491350742542373, gamma = -9.73491404802578, pd = 54.8700000000001, 
 mpd = 5.87076256058496, rogers = 0.741839762611276)
 
@@ -23,3 +26,5 @@ ABC_result <- EasyABC::ABC_sequential(
   use_seed = TRUE,
   n_cluster = 16
 )
+
+save.image(file = paste0(name, ".RData"))

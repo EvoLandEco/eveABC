@@ -7,10 +7,12 @@
 #SBATCH --mem=32GB
 #SBATCH --partition=regular
 
+name=${1}
+
 ml R
 
 Rscript -e "devtools::install_github('EvoLandEco/eve')"
 Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
 Rscript -e "install.packages('EasyABC')"
 
-Rscript ~/repos/eveABC/Script/run_ABCSMC.R 
+Rscript ~/repos/eveABC/Script/run_ABCSMC.R ${name}
