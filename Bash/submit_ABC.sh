@@ -2,8 +2,8 @@
 #SBATCH --time=04:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --job-name=edd_sim
-#SBATCH --output=logs/edd_sim-%j.log
+#SBATCH --job-name=edd_ABC
+#SBATCH --output=logs/edd_ABC-%j.log
 #SBATCH --mem=4GB
 #SBATCH --partition=regular
 

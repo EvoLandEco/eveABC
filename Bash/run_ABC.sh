@@ -2,8 +2,8 @@
 #SBATCH --time=00:10:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --job-name=edd_start
-#SBATCH --output=logs/edd_start-%j.log
+#SBATCH --job-name=edd_ABC_init
+#SBATCH --output=logs/edd_ABC_init-%j.log
 #SBATCH --mem=1GB
 #SBATCH --partition=short
 
