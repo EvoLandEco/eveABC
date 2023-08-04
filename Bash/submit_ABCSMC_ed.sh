@@ -10,4 +10,6 @@
 
 name=${1}
 
+ml R
+
 Rscript ~/repos/eveABC/Script/run_ABCSMC_ed.R ${name}
