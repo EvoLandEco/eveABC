@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --time=04:00:00
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=16
+#SBATCH --job-name=edd_ABCSMC_pd
+#SBATCH --output=logs/edd_ABCSMC_pd-%j.log
+#SBATCH --mem=16GB
+#SBATCH --partition=regular
+
+name=${1}
+
+Rscript ~/repos/eveABC/Script/run_ABCSMC_pd.R ${name}

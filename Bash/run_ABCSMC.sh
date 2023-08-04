@@ -1,11 +1,10 @@
 #!/bin/bash
-#SBATCH --time=04:00:00
+#SBATCH --time=00:10:00
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=16
-#SBATCH --job-name=edd_ABCSMC
-#SBATCH --output=logs/edd_ABCSMC-%j.log
-#SBATCH --mem=32GB
-#SBATCH --partition=regular
+#SBATCH --job-name=edd_ABCSMC_init
+#SBATCH --output=logs/edd_ABCSMC_init-%j.log
+#SBATCH --mem=1GB
+#SBATCH --partition=short
 
 name=${1}
 
@@ -15,4 +14,6 @@ Rscript -e "devtools::install_github('EvoLandEco/eve')"
 Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
 Rscript -e "install.packages('EasyABC')"
 
-Rscript ~/repos/eveABC/Script/run_ABCSMC.R ${name}
+sbatch ~/repos/eveABC/Bash/run_ABCSMC_pd.sh ${name}
+sbatch ~/repos/eveABC/Bash/run_ABCSMC_ed.sh ${name}
+sbatch ~/repos/eveABC/Bash/run_ABCSMC_nnd.sh ${name}

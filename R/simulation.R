@@ -61,3 +61,41 @@ edd_sim_ABCSMC_pd_cluster <- function(pars) {
   
   return(unlist(stats))
 }
+
+
+#' @export edd_sim_ABCSMC_ed_cluster
+edd_sim_ABCSMC_ed_cluster <- function(pars) {
+  set.seed(pars[1])
+  result <- eve::edd_sim(
+    pars = c(pars[2], pars[3], pars[4], pars[5]),
+    age = 9.9,
+    model = "dsce2",
+    metric = "ed",
+    offset = "none",
+    history = FALSE,
+    verbose = FALSE
+  )
+  
+  stats <- eveABC::summary_stats(result$tas)
+  
+  return(unlist(stats))
+}
+
+
+#' @export edd_sim_ABCSMC_nnd_cluster
+edd_sim_ABCSMC_nnd_cluster <- function(pars) {
+  set.seed(pars[1])
+  result <- eve::edd_sim(
+    pars = c(pars[2], pars[3], pars[4], pars[5]),
+    age = 9.9,
+    model = "dsce2",
+    metric = "nnd",
+    offset = "none",
+    history = FALSE,
+    verbose = FALSE
+  )
+  
+  stats <- eveABC::summary_stats(result$tas)
+  
+  return(unlist(stats))
+}
