@@ -14,6 +14,6 @@ Rscript -e "devtools::install_github('EvoLandEco/eve')"
 Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
 Rscript -e "install.packages('EasyABC')"
 
-sbatch ~/repos/eveABC/Bash/run_ABCSMC_pd.sh ${name}
-sbatch ~/repos/eveABC/Bash/run_ABCSMC_ed.sh ${name}
-sbatch ~/repos/eveABC/Bash/run_ABCSMC_nnd.sh ${name}
+sbatch ~/repos/eveABC/Bash/submit_ABCSMC_pd.sh ${name}
+sbatch ~/repos/eveABC/Bash/submit_ABCSMC_ed.sh ${name}
+sbatch ~/repos/eveABC/Bash/submit_ABCSMC_nnd.sh ${name}
