@@ -61,3 +61,37 @@ as.prior.sample <- function(x) {
   
   return(x)
 }
+
+
+#' @export create_prior_ABCSMC
+create_prior_ABCSMC <- function(dist, ...) {
+  stopifnot(is.character(dist))
+  pars <- list(...)
+
+  if(dist=="norm"){
+    
+  }
+  if (dist=="unif"){
+    pars_names <- c("la_min",
+                    "la_max",
+                    "mu_min",
+                    "mu_max",
+                    "beta_n_min",
+                    "beta_n_max",
+                    "beta_phi_min",
+                    "beta_phi_max"
+                    )
+    pars_identical <- setequal(sort(names(pars)), sort(pars_names))
+    pars_legal <- all(lengths(pars) == 1)
+    if (!pars_identical) stop(paste0("Insufficient parameters, requiring ", paste(pars_names, collapse = ", ")))
+    if (!pars_legal) stop("Illegal parameter(s)")
+    
+    prior <- list(c(dist, pars$la_min, pars$la_max),
+                  c(dist, pars$mu_min, pars$mu_max),
+                  c(dist, pars$beta_n_min, pars$beta_n_max),
+                  c(dist, pars$beta_phi_min, pars$beta_phi_max)
+                  )
+  }
+  
+  return(prior)
+}
