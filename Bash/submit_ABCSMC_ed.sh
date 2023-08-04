@@ -6,6 +6,7 @@
 #SBATCH --output=logs/edd_ABCSMC_ed-%j.log
 #SBATCH --mem=16GB
 #SBATCH --partition=regular
+#SBATCH --mail-type=ALL
 
 name=${1}
 
