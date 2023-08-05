@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=16:00:00
+#SBATCH --time=2-2:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
 #SBATCH --job-name=edd_ABCSMC_pd
