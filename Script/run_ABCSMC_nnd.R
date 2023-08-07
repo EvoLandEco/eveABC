@@ -20,11 +20,11 @@ ABC_result <- EasyABC::ABC_sequential(
   method = "Lenormand",
   model = eveABC::edd_sim_ABCSMC_nnd_cluster,
   prior = prior_ABCSMC,
-  nb_simul = 10000,
+  nb_simul = 1000,
   summary_stat_target = stats_target,
   p_acc_min = 0.4,
   use_seed = TRUE,
-  n_cluster = 16
+  n_cluster = 8
 )
 
 save.image(file = paste0(name, "_nnd", ".RData"))
