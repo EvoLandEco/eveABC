@@ -13,4 +13,5 @@ RoxygenNote: 7.2.3
 Imports: 
   treestats,
   eve,
-  ape
+  ape,
+  patchwork
