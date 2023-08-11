@@ -9,8 +9,11 @@ hist_param <- function(data) {
       bins = 30
     ) +
     ggplot2::facet_wrap(. ~ Param, scales = "free") +
+    ggplot2::scale_alpha_continuous(range=c(0.05, 0.8)) + 
     ggplot2::theme(legend.position = "none",
-                   aspect.ratio = 4 / 5)
+                   aspect.ratio = 4 / 5) +
+    ggplot2::labs(x = "Parameter value",
+                  y = "Frequency")
 }
 
 
