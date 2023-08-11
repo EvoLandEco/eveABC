@@ -38,7 +38,7 @@ hist_stats <- function(data, target) {
   stats_median <-
     plot_data %>% dplyr::group_by(Stats) %>% dplyr::summarize(median = median(Value), height = max(hist(Value, breaks=30, plot=FALSE)$counts) / 2)
   
-  stats_median <- left_join(stats_median, tibble::enframe(target, name = "Stats", value = "target"))
+  stats_median <- suppressMessages(left_join(stats_median, tibble::enframe(target, name = "Stats", value = "target")))
   
   ggplot2::ggplot(plot_data) +
     ggplot2::geom_histogram(
