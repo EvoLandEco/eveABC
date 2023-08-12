@@ -213,7 +213,7 @@ edd_sim_ABCSMC_nnd_cluster <- function(pars) {
       stats <-
         data.frame(
           balance = 0,
-          gamma = 100,
+          gamma = 10,
           pd = 0,
           sr = 3,
           cherries = 0,
