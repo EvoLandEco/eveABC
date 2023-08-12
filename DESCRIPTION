@@ -14,4 +14,8 @@ Imports:
   treestats,
   eve,
   ape,
-  patchwork
+  see,
+  patchwork,
+  snow,
+  parallel,
+  R.utils
