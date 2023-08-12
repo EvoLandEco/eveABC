@@ -7,13 +7,13 @@ stats_target <- c(balance = 0.491350742542373, gamma = -9.73491404802578, pd = 5
 prior_ABCSMC <- eveABC::create_prior_ABCSMC(
   "unif",
   la_min = 0.5,
-  la_max = 1.5,
+  la_max = 3,
   mu_min = 0,
   mu_max = 0.5,
   beta_n_min = -0.1,
   beta_n_max = 0.05,
   beta_phi_min = -0.2,
-  beta_phi_max = 0.05
+  beta_phi_max = 0.04
 )
 
 ABC_result <- EasyABC::ABC_sequential(
