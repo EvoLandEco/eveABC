@@ -22,9 +22,10 @@ ABC_result <- EasyABC::ABC_sequential(
   prior = prior_ABCSMC,
   nb_simul = 1000,
   summary_stat_target = stats_target,
-  p_acc_min = 0.4,
+  p_acc_min = 0.05,
   use_seed = TRUE,
-  n_cluster = 12
+  n_cluster = 16,
+  inside_prior = FALSE
 )
 
 save.image(file = paste0(name, "_nnd", ".RData"))
