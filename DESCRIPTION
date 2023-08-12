@@ -16,6 +16,4 @@ Imports:
   ape,
   see,
   patchwork,
-  snow,
-  parallel,
   R.utils
