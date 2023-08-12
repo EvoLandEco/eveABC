@@ -13,7 +13,7 @@ prior_ABCSMC <- eveABC::create_prior_ABCSMC(
   beta_n_min = -0.1,
   beta_n_max = 0.05,
   beta_phi_min = -0.2,
-  beta_phi_max = 0.04
+  beta_phi_max = 0.05
 )
 
 ABC_result <- EasyABC::ABC_sequential(
