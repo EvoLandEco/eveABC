@@ -25,7 +25,7 @@ ABC_result <- EasyABC::ABC_sequential(
   p_acc_min = 0.05,
   use_seed = TRUE,
   n_cluster = 16,
-  inside_prior = FALSE
+  inside_prior = TRUE
 )
 
 save.image(file = paste0(name, "_ed", ".RData"))
