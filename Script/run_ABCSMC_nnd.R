@@ -1,13 +1,20 @@
 args <- commandArgs(TRUE)
 name <- args[1]
 
-stats_target <- c(balance = 0.491350742542373, gamma = -9.73491404802578, pd = 54.8700000000001, 
-                  sr = 339, cherries = 81, rogers = 0.741839762611276)
+stats_target <-
+  c(
+    balance = 0.491350742542373,
+    gamma = -9.73491404802578,
+    pd = 54.8700000000001,
+    sr = 339,
+    cherries = 81,
+    rogers = 0.741839762611276
+  )
 
-prior_ABCSMC <- eveABC::create_prior_ABCSMC(
+prior_ABCSMC_nnd <- eveABC::create_prior_ABCSMC(
   "unif",
   la_min = 0.5,
-  la_max = 1.5,
+  la_max = 3,
   mu_min = 0,
   mu_max = 0.5,
   beta_n_min = -0.1,
@@ -16,10 +23,10 @@ prior_ABCSMC <- eveABC::create_prior_ABCSMC(
   beta_phi_max = 0.05
 )
 
-ABC_result <- EasyABC::ABC_sequential(
+ABC_result_nnd <- EasyABC::ABC_sequential(
   method = "Lenormand",
   model = eveABC::edd_sim_ABCSMC_nnd_cluster,
-  prior = prior_ABCSMC,
+  prior = prior_ABCSMC_nnd,
   nb_simul = 1000,
   summary_stat_target = stats_target,
   p_acc_min = 0.05,
