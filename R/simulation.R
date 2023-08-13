@@ -59,7 +59,7 @@ edd_sim_ABCSMC_pd_cluster <- function(pars) {
     tryCatch(
       expr = {
         R.utils::withTimeout({
-          result <- eve::edd_sim(
+          result <- eve::edd_sim_nr(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
             age = 9.9,
             model = "dsce2",
@@ -121,7 +121,7 @@ edd_sim_ABCSMC_ed_cluster <- function(pars) {
     tryCatch(
       expr = {
         R.utils::withTimeout({
-          result <- eve::edd_sim(
+          result <- eve::edd_sim_nr(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
             age = 9.9,
             model = "dsce2",
@@ -183,7 +183,7 @@ edd_sim_ABCSMC_nnd_cluster <- function(pars) {
     tryCatch(
       expr = {
         R.utils::withTimeout({
-          result <- eve::edd_sim(
+          result <- eve::edd_sim_nr(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
             age = 9.9,
             model = "dsce2",
