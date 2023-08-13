@@ -41,24 +41,74 @@ density_param <- function(data) {
 }
 
 
-half_violin_param <- function(data) {
-  plot_data <-
-    as.data.frame(data$param) %>% tidyr::gather(key = "Param", value = "Value") %>%
-    dplyr::group_by(Param) %>% dplyr::mutate(Bin = cut(Value, breaks = 30, labels = FALSE))
+grouped_violin_param <- function(data) {
+  params <- list()
+  
+  for (i in 1:length(data)) {
+    params[[i]] <-
+      as.data.frame(data[[i]]$param) %>% tidyr::gather(key = "Param", value = "Value") %>%
+      dplyr::mutate(Model = names(data)[i])
+  }
+  
+  plot_data <- dplyr::bind_rows(params)
+  
+  plot_data <- plot_data %>% dplyr::group_by(Param, Model) %>%
+    dplyr::mutate(Bin = cut(Value, breaks = 30, labels = FALSE)) %>%
+    dplyr::ungroup()
   
   ggplot2::ggplot(plot_data) +
-    see::geom_violindot(
-      ggplot2::aes(x = Param, y = Value, fill = Param),
-      scale = "width",
-      binwidth = range(Value) / 30,
-      fill_dots = "black",
-      color_dots = "black",
-      size_dots = 0.02
-    ) +
-    ggplot2::facet_wrap(. ~ Param, scales = "free") +
-    ggplot2::theme(aspect.ratio = 3 / 4) +
+    see::geom_violinhalf(ggplot2::aes(x = Model, y = Value, fill = Model),
+                         scale = "width") +
+    ggplot2::facet_wrap(. ~ Param, nrow = 1, scales = "free") +
+    ggplot2::theme(aspect.ratio = 2 / 1) +
     ggplot2::labs(x = "Parameter value",
                   y = "Half violin")
+}
+
+
+grouped_density_param <- function(data, color = "C") {
+  params <- list()
+  
+  for (i in 1:length(data)) {
+    params[[i]] <-
+      as.data.frame(data[[i]]$param) %>% tidyr::gather(key = "Param", value = "Value") %>%
+      dplyr::mutate(Model = names(data)[i])
+  }
+  
+  plot_data <- dplyr::bind_rows(params)
+  
+  plot_data$Model <- toupper(plot_data$Model)
+  
+  levels(plot_data$Model) <- c("PD", "ED", "NND")
+  
+  plots <- plot_data %>% dplyr::group_split(Param) %>% purrr::map(
+    ~ ggplot2::ggplot(.) +
+      ggridges::geom_density_ridges_gradient(
+        ggplot2::aes(
+          x = Value,
+          y = Model,
+          group = Model,
+          fill = after_stat(density)
+        ),
+        alpha = 0.3
+      ) +
+      viridis::scale_fill_viridis(option = color) +
+      ggplot2::theme(aspect.ratio = 3 / 4,
+                     legend.position = "none") +
+      ggplot2::labs(x = NULL,
+                    y = NULL) +
+      ggplot2::ggtitle(parameter_to_expression(.$Param[1]))
+  )
+  
+  return(
+    patchwork::wrap_plots(plots) +
+      patchwork::plot_annotation(
+        title = 'Parameter posterior distributions',
+        caption = 'Parameter value',
+        theme = theme(plot.title = element_text(hjust = 0.5),
+                      plot.caption = element_text(hjust = 0.5))
+      )
+  )
 }
 
 
