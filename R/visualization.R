@@ -101,7 +101,8 @@ grouped_density_param <-
             ),
             quantile_lines = TRUE
           ) +
-          viridis::scale_fill_viridis(option = color, discrete = TRUE) +
+          scale_fill_manual(values = c("HR" = "#FFBB78",
+                                "NR" = "#98DF8A")) +
           ggplot2::theme(aspect.ratio = 3 / 4,
                          legend.position = "none") +
           ggplot2::labs(x = NULL,
@@ -116,13 +117,14 @@ grouped_density_param <-
               x = Value,
               y = Model,
               group = Model,
-              fill = Type,
-              alpha = after_stat(density)
+              fill = Type
             ),
             stat = stat,
             bins = 40
           ) +
-          viridis::scale_fill_viridis(option = color, discrete = TRUE) +
+          #viridis::scale_fill_viridis(option = color) +
+          scale_fill_manual(values = c("HR" = "#AEC7E8",
+                                       "NR" = "#FFBB78")) +
           ggplot2::theme(aspect.ratio = 3 / 4,
                          legend.position = "none") +
           ggplot2::labs(x = NULL,
@@ -145,7 +147,7 @@ grouped_density_param <-
   }
 
 
-hist_stats <- function(data, target) {
+hist_stats <- function(data, target, model = NULL) {
   plot_data <-
     as.data.frame(data$stats) %>% tidyr::gather(key = "Stats", value = "Value")
   
@@ -204,7 +206,5 @@ hist_stats <- function(data, target) {
     ggplot2::theme(legend.position = "none", aspect.ratio = 4 / 5) +
     ggplot2::labs(x = "Parameter value",
                   y = "Frequency") +
-    ggplot2::ggtitle("Precision estimates")
-  #guide_area() +
-  #plot_layout(guides = 'collect')
+    ggplot2::ggtitle(bquote("Precision estimates " ~ .(paste0("(",model,") ")) ~ epsilon ~ "=" ~  .(data$epsilon)))
 }

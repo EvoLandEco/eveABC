@@ -11,7 +11,7 @@ stats_target <-
     rogers = 0.741839762611276
   )
 
-prior_ABCSMC_nnd <- eveABC::create_prior_ABCSMC(
+prior_ABCSMC_ed_nr <- eveABC::create_prior_ABCSMC(
   "unif",
   la_min = 0.6,
   la_max = 4,
@@ -23,10 +23,10 @@ prior_ABCSMC_nnd <- eveABC::create_prior_ABCSMC(
   beta_phi_max = 0.1
 )
 
-ABC_result_nnd <- EasyABC::ABC_sequential(
+ABC_result_ed_nr <- EasyABC::ABC_sequential(
   method = "Lenormand",
-  model = eveABC::edd_sim_ABCSMC_nnd_cluster,
-  prior = prior_ABCSMC_nnd,
+  model = eveABC::edd_sim_ABCSMC_ed_nr_cluster,
+  prior = prior_ABCSMC_ed_nr,
   nb_simul = 1000,
   summary_stat_target = stats_target,
   p_acc_min = 0.02,
@@ -35,4 +35,4 @@ ABC_result_nnd <- EasyABC::ABC_sequential(
   inside_prior = TRUE
 )
 
-save.image(file = paste0(name, "_nnd", ".RData"))
+save.image(file = paste0(name, "_ed_nr", ".RData"))
