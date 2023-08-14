@@ -66,50 +66,83 @@ grouped_violin_param <- function(data) {
 }
 
 
-grouped_density_param <- function(data, color = "C") {
-  params <- list()
-  
-  for (i in 1:length(data)) {
-    params[[i]] <-
-      as.data.frame(data[[i]]$param) %>% tidyr::gather(key = "Param", value = "Value") %>%
-      dplyr::mutate(Model = names(data)[i])
-  }
-  
-  plot_data <- dplyr::bind_rows(params)
-  
-  plot_data$Model <- toupper(plot_data$Model)
-  
-  levels(plot_data$Model) <- c("PD", "ED", "NND")
-  
-  plots <- plot_data %>% dplyr::group_split(Param) %>% purrr::map(
-    ~ ggplot2::ggplot(.) +
-      ggridges::geom_density_ridges_gradient(
-        ggplot2::aes(
-          x = Value,
-          y = Model,
-          group = Model,
-          fill = after_stat(density)
-        ),
-        alpha = 0.3
-      ) +
-      viridis::scale_fill_viridis(option = color) +
-      ggplot2::theme(aspect.ratio = 3 / 4,
-                     legend.position = "none") +
-      ggplot2::labs(x = NULL,
-                    y = NULL) +
-      ggplot2::ggtitle(parameter_to_expression(.$Param[1]))
-  )
-  
-  return(
-    patchwork::wrap_plots(plots) +
-      patchwork::plot_annotation(
-        title = 'Parameter posterior distributions',
-        caption = 'Parameter value',
-        theme = theme(plot.title = element_text(hjust = 0.5),
-                      plot.caption = element_text(hjust = 0.5))
+grouped_density_param <-
+  function(data, stat = "density", color = "C") {
+    if (stat != "density" & stat != "binline") {
+      stop("Stat must be either 'density' or 'binline'")
+    }
+    
+    params <- list()
+    
+    for (i in 1:length(data)) {
+      params[[i]] <-
+        as.data.frame(data[[i]]$param) %>% tidyr::gather(key = "Param", value = "Value") %>%
+        dplyr::mutate(Model = names(data)[i]) %>% 
+        dplyr::mutate(Type = if_else(grepl("\\d", names(data)[i]), "HR", "NR"))
+    }
+    
+    plot_data <- dplyr::bind_rows(params)
+    
+    plot_data$Model <- toupper(plot_data$Model)
+    
+    levels(plot_data$Model) <- c("PD", "ED", "NND")
+    
+    plots <- list()
+    
+    if (stat == "density") {
+      plots <- plot_data %>% dplyr::group_split(Param) %>% purrr::map(
+        ~ ggplot2::ggplot(.) +
+          ggridges::geom_density_ridges_gradient(
+            ggplot2::aes(
+              x = Value,
+              y = Model,
+              group = Model,
+              fill = Type
+            ),
+            quantile_lines = TRUE
+          ) +
+          viridis::scale_fill_viridis(option = color, discrete = TRUE) +
+          ggplot2::theme(aspect.ratio = 3 / 4,
+                         legend.position = "none") +
+          ggplot2::labs(x = NULL,
+                        y = NULL) +
+          ggplot2::ggtitle(parameter_to_expression(.$Param[1]))
       )
-  )
-}
+    } else {
+      plots <- plot_data %>% dplyr::group_split(Param) %>% purrr::map(
+        ~ ggplot2::ggplot(.) +
+          ggridges::geom_density_ridges_gradient(
+            ggplot2::aes(
+              x = Value,
+              y = Model,
+              group = Model,
+              fill = Type,
+              alpha = after_stat(density)
+            ),
+            stat = stat,
+            bins = 40
+          ) +
+          viridis::scale_fill_viridis(option = color, discrete = TRUE) +
+          ggplot2::theme(aspect.ratio = 3 / 4,
+                         legend.position = "none") +
+          ggplot2::labs(x = NULL,
+                        y = NULL) +
+          ggplot2::ggtitle(parameter_to_expression(.$Param[1]))
+      )
+    }
+    
+    return(
+      patchwork::wrap_plots(plots) +
+        patchwork::plot_annotation(
+          title = 'Parameter posteriors',
+          caption = 'Parameter value',
+          theme = theme(
+            plot.title = element_text(hjust = 0.5),
+            plot.caption = element_text(hjust = 0.5)
+          )
+        )
+    )
+  }
 
 
 hist_stats <- function(data, target) {
