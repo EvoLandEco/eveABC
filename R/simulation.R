@@ -61,7 +61,7 @@ edd_sim_ABCSMC_pd_nr_cluster <- function(pars) {
         R.utils::withTimeout({
           result <- eve::edd_sim_nr(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
-            age = 9.9,
+            age = 65,
             model = "dsce2",
             metric = "pd",
             offset = "simtime",
@@ -123,7 +123,7 @@ edd_sim_ABCSMC_ed_nr_cluster <- function(pars) {
         R.utils::withTimeout({
           result <- eve::edd_sim_nr(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
-            age = 9.9,
+            age = 65,
             model = "dsce2",
             metric = "ed",
             offset = "none",
@@ -185,7 +185,7 @@ edd_sim_ABCSMC_nnd_nr_cluster <- function(pars) {
         R.utils::withTimeout({
           result <- eve::edd_sim_nr(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
-            age = 9.9,
+            age = 65,
             model = "dsce2",
             metric = "nnd",
             offset = "none",
@@ -247,7 +247,7 @@ edd_sim_ABCSMC_pd_cluster <- function(pars) {
         R.utils::withTimeout({
           result <- eve::edd_sim(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
-            age = 9.9,
+            age = 65,
             model = "dsce2",
             metric = "pd",
             offset = "simtime",
@@ -309,7 +309,7 @@ edd_sim_ABCSMC_ed_cluster <- function(pars) {
         R.utils::withTimeout({
           result <- eve::edd_sim(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
-            age = 9.9,
+            age = 65,
             model = "dsce2",
             metric = "ed",
             offset = "none",
@@ -371,7 +371,7 @@ edd_sim_ABCSMC_nnd_cluster <- function(pars) {
         R.utils::withTimeout({
           result <- eve::edd_sim(
             pars = c(pars[2], pars[3], pars[4], pars[5]),
-            age = 9.9,
+            age = 65,
             model = "dsce2",
             metric = "nnd",
             offset = "none",
