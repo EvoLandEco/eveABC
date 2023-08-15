@@ -101,8 +101,8 @@ grouped_density_param <-
             ),
             quantile_lines = TRUE
           ) +
-          scale_fill_manual(values = c("HR" = "#FFBB78",
-                                "NR" = "#98DF8A")) +
+          scale_fill_manual(values = c("HR" = "#AEC7E8",
+                                "NR" = "#FFBB78")) +
           ggplot2::theme(aspect.ratio = 3 / 4,
                          legend.position = "none") +
           ggplot2::labs(x = NULL,
