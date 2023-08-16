@@ -17,6 +17,3 @@ Rscript -e "install.packages('EasyABC')"
 sbatch ~/repos/eveABC/Bash/submit_ABCSMC_pd.sh ${name}
 sbatch ~/repos/eveABC/Bash/submit_ABCSMC_ed.sh ${name}
 sbatch ~/repos/eveABC/Bash/submit_ABCSMC_nnd.sh ${name}
-sbatch ~/repos/eveABC/Bash/submit_ABCSMC_pd_nr.sh ${name}
-sbatch ~/repos/eveABC/Bash/submit_ABCSMC_ed_nr.sh ${name}
-sbatch ~/repos/eveABC/Bash/submit_ABCSMC_nnd_nr.sh ${name}

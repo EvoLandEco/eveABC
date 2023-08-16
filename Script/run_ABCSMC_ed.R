@@ -32,7 +32,7 @@ ABC_result_ed <- EasyABC::ABC_sequential(
   p_acc_min = 0.02,
   n_step_emulation = 100,
   use_seed = TRUE,
-  n_cluster = 16,
+  n_cluster = 64,
   inside_prior = TRUE
 )
 
