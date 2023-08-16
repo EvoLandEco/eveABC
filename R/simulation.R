@@ -44,6 +44,22 @@ edd_sim_sample <- function(sample, drop_extinct = FALSE) {
 }
 
 
+#' @export create_simulated_target
+create_simulated_target <- function(combo = NULL, nrep = 1000){
+  target_result <- eve::edd_sim_rep(
+    combo = combo,
+    history = FALSE,
+    verbose = FALSE,
+    nrep = nrep
+  )
+  
+  target_stats <- list(stats_tas = dplyr::bind_rows(lapply(target_result$tas, summary_stats)),
+  stats_tes = dplyr::bind_rows(lapply(target_result$tes, summary_stats)))
+  
+  return(target_stats)
+}
+
+
 #' @export edd_sim_ABCSMC_pd_nr_cluster
 edd_sim_ABCSMC_pd_nr_cluster <- function(pars) {
   set.seed(pars[1])

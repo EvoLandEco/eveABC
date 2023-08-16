@@ -13,13 +13,13 @@ stats_target <-
 
 prior_ABCSMC_ed <- eveABC::create_prior_ABCSMC(
   "unif",
-  la_min = 0.6,
+  la_min = 0.5,
   la_max = 4,
   mu_min = 0,
   mu_max = 0.8,
-  beta_n_min = -0.1,
+  beta_n_min = -0.3,
   beta_n_max = 0.05,
-  beta_phi_min = -0.3,
+  beta_phi_min = -0.2,
   beta_phi_max = 0.1
 )
 
@@ -30,6 +30,7 @@ ABC_result_ed <- EasyABC::ABC_sequential(
   nb_simul = 1000,
   summary_stat_target = stats_target,
   p_acc_min = 0.02,
+  n_step_emulation = 100,
   use_seed = TRUE,
   n_cluster = 16,
   inside_prior = TRUE

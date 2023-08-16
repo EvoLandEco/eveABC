@@ -3,6 +3,7 @@
 export(as.prior.sample)
 export(create_prior_ABCSMC)
 export(create_prior_sample)
+export(create_simulated_target)
 export(do_edd_sim)
 export(edd_sim_ABCSMC_ed_cluster)
 export(edd_sim_ABCSMC_ed_nr_cluster)

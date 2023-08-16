@@ -10,6 +10,22 @@ parameter_to_expression <- function(parameter) {
   }
 }
 
+statistic_to_expression <- function(stat) {
+  if (stat == "balance") {
+    return("J One")
+  } else if (stat == "gamma") {
+    return("Gamma")
+  } else if (stat == "pd") {
+    return("PD")
+  } else if (stat == "sr") {
+    return("SR")
+  } else if (stat == "cherries") {
+    return("Cherries")
+  } else if (stat == "rogers") {
+    return("Rogers")
+  }
+}
+
 model_to_label <- function(model) {
   if (model == "ddd") {
     return(bquote(bold(beta[N])))

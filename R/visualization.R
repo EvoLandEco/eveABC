@@ -77,7 +77,7 @@ grouped_density_param <-
     for (i in 1:length(data)) {
       params[[i]] <-
         as.data.frame(data[[i]]$param) %>% tidyr::gather(key = "Param", value = "Value") %>%
-        dplyr::mutate(Model = names(data)[i]) %>% 
+        dplyr::mutate(Model = names(data)[i]) %>%
         dplyr::mutate(Type = if_else(grepl("\\d", names(data)[i]), "HR", "NR"))
     }
     
@@ -101,8 +101,10 @@ grouped_density_param <-
             ),
             quantile_lines = TRUE
           ) +
-          scale_fill_manual(values = c("HR" = "#AEC7E8",
-                                "NR" = "#FFBB78")) +
+          scale_fill_manual(values = c(
+            "HR" = "#AEC7E8",
+            "NR" = "#FFBB78"
+          )) +
           ggplot2::theme(aspect.ratio = 3 / 4,
                          legend.position = "none") +
           ggplot2::labs(x = NULL,
@@ -123,8 +125,10 @@ grouped_density_param <-
             bins = 40
           ) +
           #viridis::scale_fill_viridis(option = color) +
-          scale_fill_manual(values = c("HR" = "#AEC7E8",
-                                       "NR" = "#FFBB78")) +
+          scale_fill_manual(values = c(
+            "HR" = "#AEC7E8",
+            "NR" = "#FFBB78"
+          )) +
           ggplot2::theme(aspect.ratio = 3 / 4,
                          legend.position = "none") +
           ggplot2::labs(x = NULL,
@@ -208,3 +212,88 @@ hist_stats <- function(data, target, model = NULL) {
                   y = "Frequency") +
     ggplot2::ggtitle(bquote("Precision estimates " ~ .(paste0("(",model,") ")) ~ epsilon ~ "=" ~  .(data$epsilon)))
 }
+
+
+grouped_density_stats <-
+  function(data, stat = "density", color = "C") {
+    if (stat != "density" & stat != "binline") {
+      stop("Stat must be either 'density' or 'binline'")
+    }
+    
+    stats <- list()
+    
+    for (i in 1:length(data)) {
+      stats[[i]] <-
+        as.data.frame(data[[i]]$stats) %>% tidyr::gather(key = "Stat", value = "Value") %>%
+        dplyr::mutate(Model = names(data)[i]) %>%
+        dplyr::mutate(Type = if_else(grepl("\\d", names(data)[i]), "HR", "NR"))
+    }
+    
+    plot_data <- dplyr::bind_rows(stats)
+    
+    plot_data$Model <- toupper(plot_data$Model)
+    
+    levels(plot_data$Model) <- c("PD", "ED", "NND")
+    
+    plots <- list()
+    
+    if (stat == "density") {
+      plots <- plot_data %>% dplyr::group_split(Stat) %>% purrr::map(
+        ~ ggplot2::ggplot(.) +
+          ggridges::geom_density_ridges_gradient(
+            ggplot2::aes(
+              x = Value,
+              y = Model,
+              group = Model,
+              fill = Type
+            ),
+            quantile_lines = TRUE
+          ) +
+          scale_fill_manual(values = c(
+            "HR" = "#AEC7E8",
+            "NR" = "#FFBB78"
+          )) +
+          ggplot2::theme(aspect.ratio = 3 / 4,
+                         legend.position = "none") +
+          ggplot2::labs(x = NULL,
+                        y = NULL) +
+          ggplot2::ggtitle(statistic_to_expression(.$Stat[1]))
+      )
+    } else {
+      plots <- plot_data %>% dplyr::group_split(Stat) %>% purrr::map(
+        ~ ggplot2::ggplot(.) +
+          ggridges::geom_density_ridges_gradient(
+            ggplot2::aes(
+              x = Value,
+              y = Model,
+              group = Model,
+              fill = Type
+            ),
+            stat = stat,
+            bins = 40
+          ) +
+          #viridis::scale_fill_viridis(option = color) +
+          scale_fill_manual(values = c(
+            "HR" = "#AEC7E8",
+            "NR" = "#FFBB78"
+          )) +
+          ggplot2::theme(aspect.ratio = 3 / 4,
+                         legend.position = "none") +
+          ggplot2::labs(x = NULL,
+                        y = NULL) +
+          ggplot2::ggtitle(statistic_to_expression(.$Stat[1]))
+      )
+    }
+    
+    return(
+      patchwork::wrap_plots(plots) +
+        patchwork::plot_annotation(
+          title = 'Parameter posteriors',
+          caption = 'Parameter value',
+          theme = theme(
+            plot.title = element_text(hjust = 0.5),
+            plot.caption = element_text(hjust = 0.5)
+          )
+        )
+    )
+  }
