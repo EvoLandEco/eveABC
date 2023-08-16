@@ -27,10 +27,9 @@ ABC_result_pd <- EasyABC::ABC_sequential(
   method = "Lenormand",
   model = eveABC::edd_sim_ABCSMC_pd_cluster,
   prior = prior_ABCSMC_pd,
-  nb_simul = 1000,
+  nb_simul = 10000,
   summary_stat_target = stats_target,
   p_acc_min = 0.02,
-  n_step_emulation = 100,
   use_seed = TRUE,
   n_cluster = 64,
   inside_prior = TRUE
