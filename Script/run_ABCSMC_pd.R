@@ -31,7 +31,7 @@ ABC_result_pd <- EasyABC::ABC_sequential(
   summary_stat_target = stats_target,
   p_acc_min = 0.02,
   use_seed = TRUE,
-  n_cluster = 64,
+  n_cluster = 24,
   inside_prior = TRUE
 )
 
