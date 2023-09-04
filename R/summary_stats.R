@@ -28,3 +28,20 @@ summary_result <- function(data) {
   
   return(stats)
 }
+
+
+#' @export summary_simulated_target
+summary_simulated_target <- function(data, method = "median") {
+  target <- lapply(data, FUN = function(x){
+    x <- x[complete.cases(x), ]
+    out <- data.frame()
+    if (method == "mean") {
+      out <- colMeans(x)
+    } else if (method == "median") {
+      out <- sapply(x, median)
+    }
+    return(out)
+  })
+  
+  return(target)
+}
