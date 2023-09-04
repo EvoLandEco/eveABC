@@ -59,7 +59,7 @@ ABC_result_accu_pd_tas <- EasyABC::ABC_sequential(
 
 ABC_result_accu_pd_tes <- EasyABC::ABC_sequential(
   method = "Lenormand",
-  model = eveABC::edd_sim_ABCSMC_pd_cluster,
+  model = eveABC::edd_sim_ABCSMC_pd_tes_cluster,
   prior = prior_ABCSMC_accu_pd_tes,
   nb_simul = 1000,
   summary_stat_target = stats_target_accu_pd_tes,
