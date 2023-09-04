@@ -3,22 +3,22 @@ name <- args[1]
 
 stats_target_accu_ed_tas <-
   c(
-    balance = 0.491350742542373,
-    gamma = -9.73491404802578,
-    pd = 54.8700000000001,
-    sr = 339,
-    cherries = 81,
-    rogers = 0.741839762611276
+    balance = 0.7008394,
+    gamma = -7.4760561,
+    pd = 134.0309933,
+    sr = 87,
+    cherries = 25,
+    rogers = 0.6790123
   )
 
 stats_target_accu_ed_tes <-
   c(
-    balance = 0.491350742542373,
-    gamma = -9.73491404802578,
-    pd = 54.8700000000001,
-    sr = 339,
-    cherries = 81,
-    rogers = 0.741839762611276
+    balance = 0.8077289,
+    gamma = -0.5672884,
+    pd = 134.0309933,
+    sr = 13,
+    cherries = 4,
+    rogers = 0.6666667 
   )
 
 prior_ABCSMC_accu_ed_tas <- eveABC::create_prior_ABCSMC(
@@ -53,7 +53,7 @@ ABC_result_accu_ed_tas <- EasyABC::ABC_sequential(
   summary_stat_target = stats_target_accu_ed_tas,
   p_acc_min = 0.02,
   use_seed = TRUE,
-  n_cluster = 64,
+  n_cluster = 16,
   inside_prior = TRUE
 )
 

@@ -53,7 +53,7 @@ ABC_result_accu_nnd_tas <- EasyABC::ABC_sequential(
   summary_stat_target = stats_target_accu_nnd_tas,
   p_acc_min = 0.02,
   use_seed = TRUE,
-  n_cluster = 64,
+  n_cluster = 16,
   inside_prior = TRUE
 )
 
