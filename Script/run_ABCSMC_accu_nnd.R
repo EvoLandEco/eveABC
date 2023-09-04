@@ -3,22 +3,22 @@ name <- args[1]
 
 stats_target_accu_nnd_tas <-
   c(
-    balance = 0.491350742542373,
-    gamma = -9.73491404802578,
-    pd = 54.8700000000001,
-    sr = 339,
-    cherries = 81,
-    rogers = 0.741839762611276
+    balance = 0.6055318,
+    gamma = -39.7715814,
+    pd = 224.6290047,
+    sr = 144,
+    cherries = 41,
+    rogers = 0.6875000
   )
 
 stats_target_accu_nnd_tes <-
   c(
-    balance = 0.491350742542373,
-    gamma = -9.73491404802578,
-    pd = 54.8700000000001,
-    sr = 339,
-    cherries = 81,
-    rogers = 0.741839762611276
+    balance =  0.7559678,
+    gamma = 0.5395508,
+    pd = 224.6290047,
+    sr = 33,
+    cherries = 10,
+    rogers = 0.6764706
   )
 
 prior_ABCSMC_accu_nnd_tas <- eveABC::create_prior_ABCSMC(
