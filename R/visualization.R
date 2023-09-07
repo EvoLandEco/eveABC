@@ -96,15 +96,11 @@ grouped_density_param <-
             ggplot2::aes(
               x = Value,
               y = Model,
-              group = Model,
-              fill = Type
+              fill = ggplot2::after_stat(x)
             ),
             quantile_lines = TRUE
           ) +
-          scale_fill_manual(values = c(
-            "HR" = "#AEC7E8",
-            "NR" = "#FFBB78"
-          )) +
+          viridis::scale_fill_viridis(option = color) +
           ggplot2::theme(aspect.ratio = 3 / 4,
                          legend.position = "none") +
           ggplot2::labs(x = NULL,
