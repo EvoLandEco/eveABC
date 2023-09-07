@@ -4,8 +4,8 @@ name <- args[1]
 stats_target <-
   c(
     balance = 0.491350742542373,
-    gamma = -9.73491404802578,
-    pd = 54.8700000000001,
+    mpd = 68.40613,
+    pd = 2474.57,
     sr = 339,
     cherries = 81,
     rogers = 0.741839762611276
