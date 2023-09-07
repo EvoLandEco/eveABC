@@ -3,12 +3,12 @@ name <- args[1]
 
 stats_target_accu_pd_tas <-
   c(
-    balance = 0.752322,
-    gamma = -4.565912,
-    pd = 57.529837,
+    balance = 0.7606298,
+    mpd = 18.0725775,
+    pd = 155.6657107,
     sr = 35,
     cherries = 10,
-    rogers = 0.700000
+    rogers = 0.6956522
   )
 
 prior_ABCSMC_accu_pd_tas <- eveABC::create_prior_ABCSMC(

@@ -3,9 +3,9 @@ name <- args[1]
 
 stats_target_accu_pd_tes <-
   c(
-    balance = 0.9123397,
-    gamma = 0.9389810,
-    pd = 57.9741213,
+    balance = 0.9060416,
+    mpd = 26.9708930,
+    pd = 58.5012132,
     sr = 5,
     cherries = 2,
     rogers = 0.7500000

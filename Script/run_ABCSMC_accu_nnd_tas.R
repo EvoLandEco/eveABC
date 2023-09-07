@@ -3,11 +3,11 @@ name <- args[1]
 
 stats_target_accu_nnd_tas <-
   c(
-    balance = 0.6055318,
-    gamma = -39.7715814,
-    pd = 224.6290047,
+    balance = 0.602317,
+    mpd = 22.685833,
+    pd = 563.835064,
     sr = 144,
-    cherries = 41,
+    cherries = 40,
     rogers = 0.6875000
   )
 

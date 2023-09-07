@@ -3,12 +3,12 @@ name <- args[1]
 
 stats_target_accu_nnd_tes <-
   c(
-    balance =  0.7559678,
-    gamma = 0.5395508,
-    pd = 224.6290047,
+    balance =  0.7511502,
+    mpd = 30.4779799,
+    pd = 224.0946084,
     sr = 33,
     cherries = 10,
-    rogers = 0.6764706
+    rogers = 0.6774194
   )
 
 prior_ABCSMC_accu_nnd_tes <- eveABC::create_prior_ABCSMC(
