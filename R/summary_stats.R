@@ -30,8 +30,8 @@ summary_result <- function(data) {
 }
 
 
-#' @export summary_simulated_target
-summary_simulated_target <- function(data, method = "median") {
+#' @export summarize_simulated_target
+summarize_simulated_target <- function(data, method = "median") {
   target <- lapply(data, FUN = function(x){
     x <- x[complete.cases(x), ]
     out <- data.frame()
