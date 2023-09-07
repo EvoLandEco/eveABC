@@ -60,8 +60,8 @@ create_simulated_target <- function(combo = NULL, nrep = 1000){
 }
 
 
-#' @export edd_sim_ABCSMC_pd_cluster
-edd_sim_ABCSMC_pd_cluster <- function(pars) {
+#' @export edd_sim_ABCSMC_pd_tas_cluster
+edd_sim_ABCSMC_pd_tas_cluster <- function(pars) {
   set.seed(pars[1])
   
   done <- FALSE
@@ -122,8 +122,8 @@ edd_sim_ABCSMC_pd_cluster <- function(pars) {
 }
 
 
-#' @export edd_sim_ABCSMC_ed_cluster
-edd_sim_ABCSMC_ed_cluster <- function(pars) {
+#' @export edd_sim_ABCSMC_ed_tas_cluster
+edd_sim_ABCSMC_ed_tas_cluster <- function(pars) {
   set.seed(pars[1])
   
   done <- FALSE
@@ -184,8 +184,8 @@ edd_sim_ABCSMC_ed_cluster <- function(pars) {
 }
 
 
-#' @export edd_sim_ABCSMC_nnd_cluster
-edd_sim_ABCSMC_nnd_cluster <- function(pars) {
+#' @export edd_sim_ABCSMC_nnd_tas_cluster
+edd_sim_ABCSMC_nnd_tas_cluster <- function(pars) {
   set.seed(pars[1])
   
   done <- FALSE
