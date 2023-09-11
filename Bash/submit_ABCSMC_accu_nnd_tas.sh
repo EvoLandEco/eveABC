@@ -1,10 +1,10 @@
 #!/bin/bash
-#SBATCH --time=3-2:00:00
+#SBATCH --time=5-2:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
 #SBATCH --job-name=edd_ABCSMC_accu_nnd_tas
 #SBATCH --output=logs/edd_ABCSMC_accu_nnd_tas-%j.log
-#SBATCH --mem=32GB
+#SBATCH --mem=16GB
 #SBATCH --partition=regular
 #SBATCH --mail-type=ALL
 

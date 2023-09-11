@@ -29,7 +29,7 @@ ABC_result_accu_nnd_tes <- EasyABC::ABC_sequential(
   prior = prior_ABCSMC_accu_nnd_tes,
   nb_simul = 1000,
   summary_stat_target = stats_target_accu_nnd_tes,
-  p_acc_min = 0.02,
+  p_acc_min = 0.05,
   use_seed = TRUE,
   n_cluster = 16,
   inside_prior = TRUE
