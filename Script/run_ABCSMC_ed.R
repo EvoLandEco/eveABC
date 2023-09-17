@@ -25,11 +25,11 @@ prior_ABCSMC_ed <- eveABC::create_prior_ABCSMC(
 
 ABC_result_ed <- EasyABC::ABC_sequential(
   method = "Lenormand",
-  model = eveABC::edd_sim_ABCSMC_ed_cluster,
+  model = eveABC::edd_sim_ABCSMC_ed_tas_cluster,
   prior = prior_ABCSMC_ed,
-  nb_simul = 2000,
+  nb_simul = 1000,
   summary_stat_target = stats_target,
-  p_acc_min = 0.02,
+  p_acc_min = 0.05,
   use_seed = TRUE,
   n_cluster = 24,
   inside_prior = TRUE
