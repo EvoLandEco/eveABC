@@ -27,7 +27,7 @@ ABC_result_accu_ed_tes <- EasyABC::ABC_sequential(
   method = "Lenormand",
   model = eveABC::edd_sim_ABCSMC_ed_tes_cluster,
   prior = prior_ABCSMC_accu_ed_tes,
-  nb_simul = 1000,
+  nb_simul = 100,
   summary_stat_target = stats_target_accu_ed_tes,
   p_acc_min = 0.05,
   use_seed = TRUE,
