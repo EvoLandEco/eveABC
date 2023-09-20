@@ -18,6 +18,21 @@ summary_stats <- function(phy) {
 }
 
 
+#' @export give_extreme_stats
+give_extreme_stats <- function() {
+  stats <-
+    data.frame(
+      balance = 0,
+      mpd = 0,
+      pd = 0,
+      sr = 3,
+      cherries = 0,
+      rogers = 0
+    )
+  return(stats)
+}
+
+
 #' @export summary_result
 summary_result <- function(data) {
   stats <- lapply(data, function(x) {

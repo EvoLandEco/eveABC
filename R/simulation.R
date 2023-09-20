@@ -102,15 +102,7 @@ edd_sim_ABCSMC_pd_tas_cluster <- function(pars) {
     if (complete == TRUE) {
       stats <- eveABC::summary_stats(result$tas)
     } else {
-      stats <-
-        data.frame(
-          balance = 0,
-          gamma = 0,
-          pd = 0,
-          sr = 3,
-          cherries = 0,
-          rogers = 0
-        )
+      stats <- eveABC::give_extreme_stats()
     }
     
     if (stats$sr > 2) {
@@ -164,15 +156,7 @@ edd_sim_ABCSMC_ed_tas_cluster <- function(pars) {
     if (complete == TRUE) {
       stats <- eveABC::summary_stats(result$tas)
     } else {
-      stats <-
-        data.frame(
-          balance = 0,
-          gamma = 0,
-          pd = 0,
-          sr = 3,
-          cherries = 0,
-          rogers = 0
-        )
+      stats <- eveABC::give_extreme_stats()
     }
     
     if (stats$sr > 2) {
@@ -226,15 +210,7 @@ edd_sim_ABCSMC_nnd_tas_cluster <- function(pars) {
     if (complete == TRUE) {
       stats <- eveABC::summary_stats(result$tas)
     } else {
-      stats <-
-        data.frame(
-          balance = 0,
-          gamma = 0,
-          pd = 0,
-          sr = 3,
-          cherries = 0,
-          rogers = 0
-        )
+      stats <- eveABC::give_extreme_stats()
     }
     
     if (stats$sr > 2) {
@@ -288,15 +264,7 @@ edd_sim_ABCSMC_pd_tes_cluster <- function(pars) {
     if (complete == TRUE) {
       stats <- eveABC::summary_stats(result$tes)
     } else {
-      stats <-
-        data.frame(
-          balance = 0,
-          gamma = 0,
-          pd = 0,
-          sr = 3,
-          cherries = 0,
-          rogers = 0
-        )
+      stats <- eveABC::give_extreme_stats()
     }
     
     if (stats$sr > 2) {
@@ -350,15 +318,7 @@ edd_sim_ABCSMC_ed_tes_cluster <- function(pars) {
     if (complete == TRUE) {
       stats <- eveABC::summary_stats(result$tes)
     } else {
-      stats <-
-        data.frame(
-          balance = 0,
-          gamma = 0,
-          pd = 0,
-          sr = 3,
-          cherries = 0,
-          rogers = 0
-        )
+      stats <- eveABC::give_extreme_stats()
     }
     
     if (stats$sr > 2) {
@@ -412,15 +372,76 @@ edd_sim_ABCSMC_nnd_tes_cluster <- function(pars) {
     if (complete == TRUE) {
       stats <- eveABC::summary_stats(result$tes)
     } else {
-      stats <-
-        data.frame(
-          balance = 0,
-          gamma = 0,
-          pd = 0,
-          sr = 3,
-          cherries = 0,
-          rogers = 0
-        )
+      stats <- eveABC::give_extreme_stats()
+    }
+    
+    if (stats$sr > 2) {
+      done <- TRUE
+    }
+  }
+  
+  return(unlist(stats))
+}
+
+
+# Modify this function to tailer to the need
+#' @export edd_sim_ABCSMC_empirical_pd
+edd_sim_ABCSMC_empirical_pd <- function(pars) {
+  # Configuration here
+  simu_age <- 65
+  simu_model <- "dsce2"
+  simu_metric <- "pd"
+  simu_offset <- "simtime"
+  simu_type <- "tas"
+  
+  # Simulation starts
+  set.seed(pars[1])
+  
+  done <- FALSE
+  complete <- FALSE
+  
+  stats <- data.frame()
+  
+  result <- list()
+  
+  while (!done) {
+    tryCatch(
+      expr = {
+        R.utils::withTimeout({
+          result <- eve::edd_sim(
+            pars = c(pars[2], pars[3], pars[4], pars[5]),
+            age = simu_age,
+            model = simu_model,
+            metric = simu_metric,
+            offset = simu_offset,
+            history = FALSE,
+            verbose = FALSE
+          )
+        }, timeout = 60)
+        complete <- TRUE
+      },
+      TimeoutException = function(ex) {
+        cat("Simulation timed out. Returning impossible statistics\n")
+      },
+      error = function(e) {
+        if (grepl("reached elapsed time limit", e$message)) {
+          cat("Simulation timed out. Returning impossible statistics\n")
+        } else {
+          stop(e)  # Rethrow any other error
+        }
+      }
+    )
+    
+    if (complete == TRUE) {
+      if (simu_type == "tas") {
+        stats <- eveABC::summary_stats(result$tas)
+      } else if (simu_type == "tes") {
+        stats <- eveABC::summary_stats(result$tes)
+      } else {
+        stop("Wrong type of tree specified")
+      }
+    } else {
+      stats <- eveABC::give_extreme_stats()
     }
     
     if (stats$sr > 2) {
