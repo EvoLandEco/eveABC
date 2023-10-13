@@ -2,8 +2,8 @@
 #SBATCH --time=2-2:00:00
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
-#SBATCH --job-name=edd_ABCSMC_accu_ed_tas
-#SBATCH --output=logs/edd_ABCSMC_accu_ed_tas-%j.log
+#SBATCH --job-name=edd_ABCSMC_create_target
+#SBATCH --output=logs/edd_ABCSMC_create_target-%j.log
 #SBATCH --mem=32GB
 #SBATCH --partition=regular
 #SBATCH --mail-type=ALL
