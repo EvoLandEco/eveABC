@@ -14,6 +14,5 @@ ml R
 
 Rscript -e "devtools::install_github('EvoLandEco/eve')"
 Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
-Rscript -e "install.packages('EasyABC')"
 
 Rscript ~/repos/eveABC/Script/run_ABCSMC_create_target.R ${nrep}
