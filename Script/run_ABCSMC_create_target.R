@@ -34,14 +34,14 @@ target_combo_nnd <- eve::edd_combo_maker(
   offset = "none"
 )
 
-target_pd <- create_simulated_target_batch(target_combo_pd, nrep, "multisession", 16)
+target_pd <- eveABC::create_simulated_target_batch(target_combo_pd, nrep, "multisession", 16)
 
 saveRDS(target_pd, "target_pd.rds")
 
-target_ed <- create_simulated_target_batch(target_combo_ed, nrep, "multisession", 16)
+target_ed <- eveABC::create_simulated_target_batch(target_combo_ed, nrep, "multisession", 16)
 
 saveRDS(target_ed, "target_ed.rds")
 
-target_nnd <- create_simulated_target_batch(target_combo_nnd, nrep, "multisession", 16)
+target_nnd <- eveABC::create_simulated_target_batch(target_combo_nnd, nrep, "multisession", 16)
 
 saveRDS(target_nnd, "target_nnd.rds")
