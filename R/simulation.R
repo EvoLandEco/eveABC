@@ -60,6 +60,20 @@ create_simulated_target <- function(combo = NULL, nrep = 1000){
 }
 
 
+#' @export create_simulated_target_batch
+create_simulated_target_batch <- function(combo_list, nrep = 1000, strategy= "sequential", workers = 1) {
+  eve:::check_parallel_arguments(strategy = strategy, workers = workers)
+  future_opts <- furrr::furrr_options(seed = TRUE)
+  results <- furrr::future_map(.x = combo_list, 
+                               .f = create_simulated_target, 
+                               .progress = TRUE, 
+                               .options = future_opts,
+                               nrep = nrep)
+  
+  return(results)
+}
+
+
 #' @export edd_sim_ABCSMC_pd_tas_cluster
 edd_sim_ABCSMC_pd_tas_cluster <- function(pars) {
   set.seed(pars[1])
