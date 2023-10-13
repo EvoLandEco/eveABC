@@ -1,5 +1,6 @@
 args <- commandArgs(TRUE)
 nrep <- args[1]
+nrep <- as.numeric(as.character(nrep))
 
 target_combo_pd <- eve::edd_combo_maker(
   la = c(0.6),
