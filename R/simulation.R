@@ -66,7 +66,6 @@ create_simulated_target_batch <- function(combo_list, nrep = 1000, strategy= "se
   future_opts <- furrr::furrr_options(seed = TRUE)
   results <- furrr::future_map(.x = combo_list, 
                                .f = create_simulated_target, 
-                               .progress = TRUE, 
                                .options = future_opts,
                                nrep = nrep)
   

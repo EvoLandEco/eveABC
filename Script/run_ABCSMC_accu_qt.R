@@ -15,8 +15,6 @@ target_combo_pd <- eve::edd_combo_maker(
   offset = "simtime"
 )
 
-test_rs <- create_simulated_target_batch(target_combo_pd, 10)
-
 target_combo_ed <- eve::edd_combo_maker(
   la = c(0.6),
   mu = c(0.1),
