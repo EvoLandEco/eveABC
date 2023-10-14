@@ -28,6 +28,9 @@ if [[ ! $nsim =~ ^[0-9]+$ ]]; then
     exit 1
 fi
 
+Rscript -e "devtools::install_github('EvoLandEco/eve')"
+Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
+
 # Loop over the specified strings
 for metric in pd ed nnd
 do

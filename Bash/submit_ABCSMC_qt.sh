@@ -15,7 +15,5 @@ metric=$3
 set=$4
 
 ml R
-Rscript -e "devtools::install_github('EvoLandEco/eve')"
-Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
 
 Rscript ../Script/run_ABCSMC_accu_qt.R ${name} ${nsim} ${metric} ${set}
