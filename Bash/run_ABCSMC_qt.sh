@@ -28,6 +28,12 @@ if [[ ! $nsim =~ ^[0-9]+$ ]]; then
     exit 1
 fi
 
+# Check if nsim is equal to or larger than 10
+if [[ $nsim -lt 10 ]]; then
+    echo "Error: nsim must be equal to or larger than 10."
+    exit 1
+fi
+
 Rscript -e "devtools::install_github('EvoLandEco/eve')"
 Rscript -e "devtools::install_github('EvoLandEco/eveABC')"
 
